@@ -1,0 +1,30 @@
+title Exercise 0.6 - What happens after the submit button is clicked in SPA Example.
+
+note over browser:
+This time the browser will creare a new object with 
+the content of the input field "name" and the current time.
+Example: 
+{content: 'whatever you write in the input field "name"', date: 'the current date and time'}
+After that this object is pushed to the notes array
+Then the content input field "name" is emptied and
+the notes are re-rendered
+and finally the object is stringified and sended to the server 
+as part of and HTTPS POST request to
+the address "/exampleapp/new_note_spa"
+end note
+
+browser->server: HTTPS POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa 
+
+note over server
+recieves the new note and saves it
+and responds with a status code 201 
+and {"message":"note created"}
+end note
+
+server-->browser: Responds with a 201 status code (Created) and '{"message":"note created"}'
+
+note over browser
+If the statud code is 201 and the readyState is 4
+then the browser prints to console '{"message":"note created"}'
+end note
+

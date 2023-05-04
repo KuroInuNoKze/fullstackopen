@@ -1,0 +1,41 @@
+title Exercise 0.4 - What happens after the submit button is clicked.
+note over browser:
+The browser gets the data in the input field named "note"
+after the submit button gets clicked by the user
+takes the text from "note" field and sends it via POST to the 
+server using the existing action attribute as guide to obtain
+the URL to make the request  (in this case "/exampleapp/new_note")
+and the data of the "note" input field is sended as the body of 
+this request
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note 
+
+
+note over server
+recieves the new note and saves it
+and responds with a HTTP status code 302 
+with "/exampleapp/notes" as the location
+end note
+
+server-->browser: Respond with a 302 status code (redirect to "/notes")
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML-code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{content: "glhf", date: "2023-05-03T23:27:22.292Z"}, ...]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note
